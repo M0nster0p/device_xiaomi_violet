@@ -9,6 +9,9 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
+# Enable updating of APEXes
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
@@ -20,7 +23,8 @@ $(call inherit-product, vendor/xiaomi/violet/violet-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay
+    $(LOCAL_PATH)/overlay \
+
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
@@ -285,10 +289,6 @@ PRODUCT_PACKAGES += \
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
-
-# Keyhandler
-PRODUCT_PACKAGES += \
-    KeyHandler
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
